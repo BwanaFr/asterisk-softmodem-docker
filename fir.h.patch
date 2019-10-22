@@ -1,0 +1,60 @@
+--- fir.h.orig
++++ fir.h
+@@ -88,10 +88,10 @@
+     fir->curr_pos = taps - 1;
+     fir->coeffs = coeffs;
+ #if defined(USE_MMX)  ||  defined(USE_SSE2)
+-    if ((fir->history = malloc(2*taps*sizeof(int16_t))))
++    if ((fir->history = ast_malloc(2*taps*sizeof(int16_t))))
+         memset(fir->history, 0, 2*taps*sizeof(int16_t));
+ #else
+-    if ((fir->history = (int16_t *) malloc(taps*sizeof(int16_t))))
++    if ((fir->history = (int16_t *) ast_malloc(taps*sizeof(int16_t))))
+         memset(fir->history, 0, taps*sizeof(int16_t));
+ #endif
+     return fir->history;
+@@ -110,7 +110,7 @@
+ 
+ static __inline__ void fir16_free(fir16_state_t *fir)
+ {
+-    free(fir->history);
++    ast_free(fir->history);
+ }
+ /*- End of function --------------------------------------------------------*/
+ 
+@@ -210,7 +210,7 @@
+     fir->taps = taps;
+     fir->curr_pos = taps - 1;
+     fir->coeffs = coeffs;
+-    fir->history = (int16_t *) malloc(taps*sizeof(int16_t));
++    fir->history = (int16_t *) ast_malloc(taps*sizeof(int16_t));
+     if (fir->history)
+     	memset(fir->history, '\0', taps*sizeof(int16_t));
+     return fir->history;
+@@ -225,7 +225,7 @@
+ 
+ static __inline__ void fir32_free(fir32_state_t *fir)
+ {
+-    free(fir->history);
++    ast_free(fir->history);
+ }
+ /*- End of function --------------------------------------------------------*/
+ 
+@@ -258,7 +258,7 @@
+     fir->taps = taps;
+     fir->curr_pos = taps - 1;
+     fir->coeffs = coeffs;
+-    fir->history = (float *) malloc(taps*sizeof(float));
++    fir->history = (float *) ast_malloc(taps*sizeof(float));
+     if (fir->history)
+         memset(fir->history, '\0', taps*sizeof(float));
+     return fir->history;
+@@ -267,7 +267,7 @@
+     
+ static __inline__ void fir_float_free(fir_float_state_t *fir)
+ {
+-    free(fir->history);
++    ast_free(fir->history);
+ }
+ /*- End of function --------------------------------------------------------*/
+ 

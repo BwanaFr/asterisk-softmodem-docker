@@ -1,0 +1,17 @@
+--- app_softmodem.c.orig
++++ app_softmodem.c
+@@ -15,10 +15,12 @@
+ 	 <depend>spandsp</depend>
+ 	<support_level>extended</support_level>
+ ***/
++
++#ifndef AST_MODULE
++#define AST_MODULE "app_softmodem"
++#endif
+  
+ #include "asterisk.h"
+-
+-ASTERISK_FILE_VERSION(__FILE__, "$Revision$")
+ 
+ #include <string.h>
+ #include <stdlib.h>
