@@ -23,5 +23,6 @@ fi
 chown -R ${ASTERISK_USER}: /var/log/asterisk \
                            /var/lib/asterisk \
                            /var/run/asterisk \
-                           /var/spool/asterisk; \
+                           /var/spool/asterisk \
+                           /etc/asterisk; \
 exec ${COMMAND}
