@@ -13,17 +13,13 @@ RUN apk add --no-cache \
 && wget -P /tmp https://raw.githubusercontent.com/proquar/asterisk-Softmodem/app_softmodem/app_softmodem.c \
 && patch /usr/include/spandsp/fir.h < /tmp/fir.h.patch \
 && patch /tmp/app_softmodem.c < /tmp/app_softmodem.c.patch \
-&& gcc -shared /tmp/app_softmodem.c -o /tmp/app_softmodem.so -DAST_MODULE_SELF_SYM="__internal_app_softmodem" -lspandsp -fPIC
-
-#Clean dev packages
-RUN apk del --no-cache \
+&& gcc -shared /tmp/app_softmodem.c -o /tmp/app_softmodem.so -DAST_MODULE_SELF_SYM="__internal_app_softmodem" -lspandsp -fPIC \
+&& apk del --no-cache \
       asterisk-dev \
       spandsp-dev \
       tiff-dev \
-      build-base
-
-#Run asterisk
-RUN apk add --update \
+      build-base \
+&& apk add --update \
       asterisk \
       asterisk-sample-config \
       asterisk-sounds-en \
